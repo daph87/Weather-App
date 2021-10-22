@@ -1,0 +1,33 @@
+/** @format */
+
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import Favorites from "./Favorites";
+import Header from "./Header/Header";
+import Home from "./Home/Home";
+
+const Layout = () => {
+  return (
+    <div className='layout'>
+      <Router>
+        <header>
+          <Header />
+        </header>
+        <main>
+          <Switch>
+            <Route exact path='/favorites' component={Favorites} />
+            <Route exact path='/home' component={Home} />
+            <Redirect exact from='/' to='home' />
+          </Switch>
+        </main>
+      </Router>
+    </div>
+  );
+};
+
+export default Layout;

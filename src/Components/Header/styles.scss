@@ -1,0 +1,39 @@
+/** @format */
+header {
+  height: 10%;
+  border-bottom: 1px solid #eee;
+  .NavBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // background: hsl(0, 0%, 93%);
+    text-align: center;
+    padding: 0 2em;
+    text-decoration: none;
+    flex: 1;
+    letter-spacing: 3px;
+    transition: all 0.5s ease;
+    font-size: larger;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
+    // align-items: center;
+    .links {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      & > a {
+        padding: 0px 5px;
+        color: var(--nav-color);
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &:hover {
+          font-weight: bold;
+          color: blue;
+        }
+      }
+    }
+  }
+}

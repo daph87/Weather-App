@@ -1,0 +1,7 @@
+/** @format */
+
+export enum CurrentWeatherTypes {
+  CURRENT_WEATHER = "CURRENT_WEATHER",
+  CURRENT_WEATHER_ERROR = "CURRENT_WEATHER_ERROR",
+  // FIVE_DAY_FORECAST = "FIVE_DAY_FORECAST",
+}
