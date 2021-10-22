@@ -2,7 +2,6 @@
 
 import api from "./api";
 import jsonFile from "../Redux/autocomplete.json";
-import _ from "lodash";
 
 // export const getLocations = async (city: string, cb: any) => {
 //   await api
@@ -19,14 +18,9 @@ import _ from "lodash";
 //     });
 // };
 
-export const getLocations = async () => {
-  const locations_cb = await jsonFile;
-  const locations = _.map(locations_cb, (location) => {
-    return {
-      id: location.Key,
-      name: location.LocalizedName,
-      country: location.Country.LocalizedName,
-    };
-  });
-  const json = jsonFile;
+export const getLocations = () => {
+  const json: any = jsonFile;
+  // const jsonObj = JSON.parse(json);
+  console.log(typeof json, "calling server");
+  return json;
 };

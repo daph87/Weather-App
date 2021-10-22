@@ -7,7 +7,7 @@ import {
   Store,
   EmptyObject,
 } from "redux";
-import { Action, CurrentWeatherState } from "./Actions/types/CurrentWeather";
+import { Action, WeatherState } from "./Actions/types/CurrentWeather";
 // import { Action } from "./index"
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -25,7 +25,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store: Store<
   EmptyObject & {
-    CurrentWeatherInfo: CurrentWeatherState;
+    weatherInfo: WeatherState;
   } & PersistPartial,
   Action
 > & {

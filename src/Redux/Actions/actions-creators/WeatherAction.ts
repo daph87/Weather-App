@@ -2,7 +2,7 @@
 import { Dispatch } from "redux";
 
 import api from "../../../Services/api";
-import { CurrentWeatherTypes } from "../../Enums/CurrentWeatherTypes";
+import { WeatherTypes } from "../../Enums/WeatherTypes";
 import { Action } from "../types/CurrentWeather";
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
 import { AxiosResponse } from "axios";
@@ -20,17 +20,32 @@ export const getCurrentWeather =
           const data = response.data;
 
           dispatch({
-            type: CurrentWeatherTypes.CURRENT_WEATHER,
+            type: WeatherTypes.CURRENT_WEATHER,
             payload: data,
           });
         },
         (error) => {
           dispatch({
-            type: CurrentWeatherTypes.CURRENT_WEATHER_ERROR,
+            type: WeatherTypes.CURRENT_WEATHER_ERROR,
             payload: error,
           });
         }
       );
+  };
+
+export const setCity = (city: any) => (dispatch: Dispatch<Action>) => {
+  dispatch({
+    type: WeatherTypes.SET_CITY_KEY,
+    payload: city,
+  });
+};
+
+export const setMetricConversion =
+  (metric: string) => (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: WeatherTypes.SET_METRIC_CONVERSION,
+      payload: metric,
+    });
   };
 
 export const getFiveDaysWeather =
@@ -46,13 +61,13 @@ export const getFiveDaysWeather =
           const data = response;
 
           dispatch({
-            type: CurrentWeatherTypes.CURRENT_WEATHER,
+            type: WeatherTypes.CURRENT_WEATHER,
             payload: data,
           });
         },
         (error) => {
           dispatch({
-            type: CurrentWeatherTypes.CURRENT_WEATHER_ERROR,
+            type: WeatherTypes.CURRENT_WEATHER_ERROR,
             payload: error,
           });
         }

@@ -1,47 +1,60 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import debounce from "lodash.debounce";
-// import { getLocations } from "../../../Services/getLocations";
-import jsonFile from "../../../Redux/autocomplete.json";
-import _ from "lodash";
+import { getLocations } from "../../../Services/getLocations";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { weatherActionCreators } from "../../../Redux";
 
 const SearchBar = () => {
-  const [city, setCity] = useState<string>("");
+  const dispatch = useDispatch();
+  const { setCity } = bindActionCreators(weatherActionCreators, dispatch);
+
+  const [cityInput, setCityInput] = useState<string>("");
   const [locations, setLocations] = useState<any>(undefined);
-
-  useEffect(() => {
-    _.debounce(function () {
-      //debounce the fetch() while searching a city
-      getLocations();
-    }, 500);
-    // debouncedFetchData(city, (res: any) => {
-    //   setResults(res);
-    //   console.log(results, "Test results");
-    // });
-  });
-
-  //   const debouncedFetchData = debounce((city, cb) => {
-  //     getLocations(city, cb);
-  //   }, 500);
-
-  const getLocations = async () => {
-    const locations_cb = await jsonFile;
-    const locations = _.map(locations_cb, (location) => {
-      return {
-        id: location.Key,
-        name: location.LocalizedName,
-        country: location.Country.LocalizedName,
-      };
-    });
-    setLocations(locations);
-    console.log(locations, "debounce");
-  };
+  const [showAutoComplete, setShowAutoComplete] = useState<boolean>(true);
 
   const onChangeCity = (event: React.FormEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    setCity(target.value);
+    setCityInput(target.value);
+    doSearch(target.value);
   };
+
+  const chooseCity = (location: any) => {
+    setShowAutoComplete(false);
+    setCity(location);
+  };
+
+  const doSearch = useRef(
+    // using debounce to delay request to backend
+    debounce(async (cityInput) => {
+      // backend request to do search
+      if (!cityInput) {
+        setShowAutoComplete(false);
+        return false;
+      }
+      const loc = await getLocations();
+      setLocations(loc);
+      setShowAutoComplete(true);
+    }, 500)
+  ).current;
+
+  const renderAutoComplete = () => {
+    if (!showAutoComplete || !locations) return false;
+    let locationDiv = locations.locationsJson.map((location: any) => {
+      return (
+        <div
+          className='location'
+          key={location.Key}
+          onClick={() => chooseCity(location)}>
+          {location.LocalizedName}, {location.Country.LocalizedName}
+        </div>
+      );
+    });
+    return locationDiv;
+  };
+
   return (
     <form
       className='LocationSearch'
@@ -50,14 +63,12 @@ const SearchBar = () => {
       }}>
       <input
         onChange={onChangeCity}
-        value={city}
+        value={cityInput}
         type='text'
         className='form-control'
-        placeholder='Search by city name...'
+        placeholder='Search city'
       />
-      {/* <div className='autocomplete'>
-    {this.renderAutoComplete()}
-  </div> */}
+      <div>{renderAutoComplete()}</div>
     </form>
   );
 };
