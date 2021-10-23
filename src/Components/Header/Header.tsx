@@ -14,11 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { weatherActionCreators } from "../../Redux";
 import { RootState } from "../../Redux/Reducers/rootReducer";
-import { WeatherState } from "../../Redux/Actions/types/Weather";
+import { WeatherState } from "../../Redux/Actions/types/weather";
 
 // fontawesome.library.add(faCheckSquare, faCoffee);
 
-const Header = () => {
+const Header: React.FC = () => {
   const [theme, setTheme] = useState("light");
 
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 /** @format */
 
-import { ActionFavoriteCities } from "./types/FavoriteCities";
-import { ActionWeather } from "./types/Weather";
+import { ActionFavoritesCities } from "./types/favoritesCities";
+import { ActionWeather } from "./types/weather";
 
-export type Actions = ActionWeather | ActionFavoriteCities;
+export type Actions = ActionWeather | ActionFavoritesCities;

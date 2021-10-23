@@ -7,11 +7,11 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Favorites from "./Favorites";
+import Favorites from "./Favorites/FavoritesCities";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <div className='layout'>
       <Router>

@@ -1,6 +1,6 @@
 /** @format */
 
-// import { CurrentWeatherData } from "../Types/CurrentWeatherDataType";
+import { CurrentWeatherData } from "../Types/CurrentWeatherDataType";
 
 export const showUnit = (metric: string, currentWeather: any) => {
   const unit =

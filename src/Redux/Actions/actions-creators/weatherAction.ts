@@ -2,8 +2,8 @@
 import { Dispatch } from "redux";
 
 import api from "../../../Services/api";
-import { WeatherTypes } from "../../Enums/WeatherTypes";
-import { ActionWeather } from "../types/Weather";
+import { WeatherTypes } from "../../Enums/weatherTypes";
+import { ActionWeather } from "../types/weather";
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
 import { AxiosResponse } from "axios";
 

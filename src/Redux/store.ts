@@ -7,7 +7,7 @@ import {
   Store,
   EmptyObject,
 } from "redux";
-import { WeatherState } from "./Actions/types/Weather";
+import { WeatherState } from "./Actions/types/weather";
 import { Actions } from "./Actions/index";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";

@@ -1,7 +1,6 @@
 /** @format */
 
-export enum FavoriteCitiesTypes {
+export enum FavoritesCitiesTypes {
   ADD_FAVORITE_CITY = "ADD_FAVORITE_CITY",
   DELETE_FAVORITE_CITY = "DELETE_FAVORITE_CITY",
-  SET_FAVORITE_ICON_ACTIVE = "SET_FAVORITE_ICON_ACTIVE",
 }

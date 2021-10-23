@@ -1,7 +1,7 @@
 /** @format */
 
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
-import { WeatherTypes } from "../../Enums/WeatherTypes";
+import { WeatherTypes } from "../../Enums/weatherTypes";
 import { AxiosResponse } from "axios";
 
 export interface CurrentWeatherAction {

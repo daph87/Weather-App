@@ -1,8 +1,8 @@
 /** @format */
 
-import { WeatherTypes } from "../Enums/WeatherTypes";
+import { WeatherTypes } from "../Enums/weatherTypes";
 import { REHYDRATE } from "redux-persist";
-import { WeatherState, ActionWeather } from "../Actions/types/Weather";
+import { WeatherState, ActionWeather } from "../Actions/types/weather";
 
 const initialState: WeatherState = {
   currentWeather: undefined,
@@ -39,6 +39,11 @@ export default (state = initialState, action: ActionWeather): WeatherState => {
         ...state,
         metric: action.payload,
       };
+    // case WeatherTypes.SET_FAVORITE_ICON_ACTIVE:
+    //   return {
+    //     ...state,
+    //     weather: action.payload,
+    //   };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { weatherActionCreators } from "../../../Redux";
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
   const { setCity } = bindActionCreators(weatherActionCreators, dispatch);
 

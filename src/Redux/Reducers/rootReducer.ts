@@ -1,12 +1,12 @@
 /** @format */
 
 import { combineReducers } from "redux";
-import favoriteCitiesReducer from "./favoriteCitiesReducer";
-import weatherReducer from "./WeatherReducer";
+import favoritesCitiesReducer from "./favoritesCitiesReducer";
+import weatherReducer from "./weatherReducer";
 
 const rootReducer = combineReducers({
   weatherInfo: weatherReducer,
-  favoriteCities: favoriteCitiesReducer,
+  favoritesCitiesInfo: favoritesCitiesReducer,
 });
 
 export default rootReducer;
