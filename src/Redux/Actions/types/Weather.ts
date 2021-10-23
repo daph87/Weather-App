@@ -22,19 +22,24 @@ export interface MetricConversionAction {
   type: WeatherTypes.SET_METRIC_CONVERSION;
   payload: string;
 }
-
+export interface SetWeatherAction {
+  type: WeatherTypes.SET_WEATHER;
+  payload: any;
+}
 export interface WeatherState {
-  currentWeather:
-    | AxiosResponse<CurrentWeatherData>
-    | CurrentWeatherData
-    | undefined;
+  currentWeather: any;
+  // | AxiosResponse<CurrentWeatherData>
+  // | CurrentWeatherData
+  // | undefined;
   currentWeatherError: AxiosResponse<string> | string | undefined;
   city: any | undefined;
   metric: string;
+  weather: any;
 }
 
-export type Action =
+export type ActionWeather =
   | CurrentWeatherAction
   | CurrentWeatherErrorsAction
   | CityKeyAction
-  | MetricConversionAction;
+  | MetricConversionAction
+  | SetWeatherAction;

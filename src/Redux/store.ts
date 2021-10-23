@@ -7,8 +7,8 @@ import {
   Store,
   EmptyObject,
 } from "redux";
-import { Action, WeatherState } from "./Actions/types/CurrentWeather";
-// import { Action } from "./index"
+import { WeatherState } from "./Actions/types/Weather";
+import { Actions } from "./Actions/index";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import thunk from "redux-thunk";
@@ -27,9 +27,9 @@ const store: Store<
   EmptyObject & {
     weatherInfo: WeatherState;
   } & PersistPartial,
-  Action
+  Actions
 > & {
-  dispatch: Dispatch<Action>;
+  dispatch: Dispatch<Actions>;
 } = createStore(
   persistedReducer,
   compose(composeWithDevTools(applyMiddleware(thunk)))

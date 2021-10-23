@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { weatherActionCreators } from "../../Redux";
 import { RootState } from "../../Redux/Reducers/rootReducer";
-import { WeatherState } from "../../Redux/Actions/types/CurrentWeather";
+import { WeatherState } from "../../Redux/Actions/types/Weather";
 
 // fontawesome.library.add(faCheckSquare, faCoffee);
 

@@ -2,6 +2,8 @@
   "EpochTime": 1634853900,
   "HasPrecipitation": false,
   "IsDayTime": false,
+  "WeatherText": "Partly sunny",
+  "WeatherIcon": 3,
   "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
   "LocalObservationDateTime": "2021-10-22T01:05:00+03:00",
   "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",

@@ -21,6 +21,6 @@ import jsonFile from "../Redux/autocomplete.json";
 export const getLocations = () => {
   const json: any = jsonFile;
   // const jsonObj = JSON.parse(json);
-  console.log(typeof json, "calling server");
+  // console.log(typeof json, "calling server");
   return json;
 };
