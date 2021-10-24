@@ -20,7 +20,7 @@ const Home: React.FC<Props> = (props) => {
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
-  const { getCurrentWeather } = bindActionCreators(
+  const { getCurrentWeather, getFiveDaysWeather } = bindActionCreators(
     weatherActionCreators,
     dispatch
   );

@@ -10,6 +10,8 @@ const initialState: WeatherState = {
   city: undefined,
   metric: "Celsius",
   weather: undefined,
+  fiveDaysForecastError: undefined,
+  fiveDaysForecast: undefined,
 };
 export default (state = initialState, action: ActionWeather): WeatherState => {
   switch (action.type) {
@@ -35,6 +37,17 @@ export default (state = initialState, action: ActionWeather): WeatherState => {
         weather: action.payload,
       };
     case WeatherTypes.SET_METRIC_CONVERSION:
+      return {
+        ...state,
+        metric: action.payload,
+      };
+
+    case WeatherTypes.FIVE_DAYS_FORECAST:
+      return {
+        ...state,
+        metric: action.payload,
+      };
+    case WeatherTypes.FIVE_DAYS_FORECAST_ERROR:
       return {
         ...state,
         metric: action.payload,

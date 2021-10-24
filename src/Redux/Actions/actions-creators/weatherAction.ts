@@ -76,13 +76,13 @@ export const getFiveDaysWeather =
           const data = response;
 
           dispatch({
-            type: WeatherTypes.CURRENT_WEATHER,
+            type: WeatherTypes.FIVE_DAYS_FORECAST,
             payload: data,
           });
         },
         (error) => {
           dispatch({
-            type: WeatherTypes.CURRENT_WEATHER_ERROR,
+            type: WeatherTypes.FIVE_DAYS_FORECAST_ERROR,
             payload: error,
           });
         }

@@ -22,6 +22,16 @@ export interface MetricConversionAction {
   type: WeatherTypes.SET_METRIC_CONVERSION;
   payload: string;
 }
+
+export interface GetFiveDaysForecastAction {
+  type: WeatherTypes.FIVE_DAYS_FORECAST;
+  payload: any;
+}
+
+export interface GetFiveDaysForecastActionError {
+  type: WeatherTypes.FIVE_DAYS_FORECAST_ERROR;
+  payload: any;
+}
 export interface SetWeatherAction {
   type: WeatherTypes.SET_WEATHER;
   payload: any;
@@ -35,6 +45,8 @@ export interface WeatherState {
   city: any | undefined;
   metric: string;
   weather: any;
+  fiveDaysForecastError: any;
+  fiveDaysForecast: any;
 }
 
 export type ActionWeather =
@@ -42,4 +54,6 @@ export type ActionWeather =
   | CurrentWeatherErrorsAction
   | CityKeyAction
   | MetricConversionAction
-  | SetWeatherAction;
+  | SetWeatherAction
+  | GetFiveDaysForecastAction
+  | GetFiveDaysForecastActionError;
