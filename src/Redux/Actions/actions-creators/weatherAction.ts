@@ -63,7 +63,7 @@ export const setMetricConversion =
     });
   };
 
-export const getFiveDaysWeather =
+export const getFiveDaysForecast =
   // location: number, apiKey: string
   () => async (dispatch: Dispatch<ActionWeather>) => {
     await api

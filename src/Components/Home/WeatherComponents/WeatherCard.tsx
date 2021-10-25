@@ -1,12 +1,13 @@
 /** @format */
 
 import React from "react";
+import "./weatherCard.scss";
 import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
 
 type Props = {
   className: string;
   cardKey: string;
-  cityName: string;
+  cityName?: string;
   iconSource?: any;
   alt?: string;
   temperature?: string;
@@ -24,14 +25,13 @@ const WeatherCard: React.FC<Props> = (props) => {
     iconPhrase,
   } = props;
   return (
-    <div key={cardKey} className={className}>
+    <div key={cardKey} className='weatherCard'>
+      <p className='cityName'>{cityName}</p>
       <div className='icon'>
         <img src={getWeatherIconUrl(iconSource)} alt={alt} />
       </div>
-      <div className='cityName'>{cityName}</div>
-
-      <div className='temperature'>{temperature}</div>
-      {iconPhrase ? <div className='iconPhrase'>{iconPhrase}</div> : null}
+      <p className='currentTemperature'>{temperature}</p>
+      <p className='iconPhrase'>{iconPhrase}</p>
     </div>
   );
 };

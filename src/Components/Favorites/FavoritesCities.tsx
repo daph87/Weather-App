@@ -7,6 +7,7 @@ import { weatherActionCreators } from "../../Redux";
 import { FavoritesCitiesState } from "../../Redux/Actions/types/favoritesCities";
 import { RootState } from "../../Redux/Reducers/rootReducer";
 import OneFavoritesCity from "./OneFavoritesCity";
+import "./favorites.scss";
 
 const Favorites: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Favorites: React.FC = () => {
   }, []);
   return (
     // <div></div>
-    <div className='Favorites'>
+    <div className='favorites'>
       {favoritesCities.map((city: any) => (
         <OneFavoritesCity city={city} onGoBack={() => setCity(city)} />
       ))}

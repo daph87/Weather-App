@@ -51,7 +51,7 @@ const Header: React.FC = () => {
                 icon={theme === "light" ? faToggleOff : faToggleOn}
               />
             </div>
-            <div onClick={switchMetric}>
+            <div className='switchUnit' onClick={switchMetric}>
               {metric === "Celsius" ? <p>C° to F°</p> : <p>F° to C°</p>}
             </div>
           </div>

@@ -45,12 +45,12 @@ export default (state = initialState, action: ActionWeather): WeatherState => {
     case WeatherTypes.FIVE_DAYS_FORECAST:
       return {
         ...state,
-        metric: action.payload,
+        fiveDaysForecast: action.payload,
       };
     case WeatherTypes.FIVE_DAYS_FORECAST_ERROR:
       return {
         ...state,
-        metric: action.payload,
+        fiveDaysForecastError: action.payload,
       };
     // case WeatherTypes.SET_FAVORITE_ICON_ACTIVE:
     //   return {

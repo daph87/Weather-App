@@ -1,0 +1,21 @@
+/** @format */
+.weatherCard {
+  cursor: pointer;
+  height: 144px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  /* margin-top: 2vw; */
+  margin-bottom: 2vw;
+  width: 100px;
+  padding: 2vw;
+  font-size: 0.9em;
+  box-shadow: 0px 8px 17px -7px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
+  justify-content: space-around;
+
+  .currentTemperature {
+    margin: 0;
+  }
+}

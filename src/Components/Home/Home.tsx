@@ -12,6 +12,7 @@ import { WeatherState } from "../../Redux/Actions/types/weather";
 import { getWeatherIconUrl } from "../../Helpers/getWeatherIconUrl";
 import { showUnit } from "../../Helpers/showUnit";
 import FavoriteButton from "./FavoriteIcon/FavoriteButton";
+import FiveDaysForecast from "./FiveDaysForecast/FiveDaysForecast";
 type Props = {
   getCurrentWeather: () => void;
 };
@@ -20,7 +21,7 @@ const Home: React.FC<Props> = (props) => {
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
-  const { getCurrentWeather, getFiveDaysWeather } = bindActionCreators(
+  const { getCurrentWeather, getFiveDaysForecast } = bindActionCreators(
     weatherActionCreators,
     dispatch
   );
@@ -29,6 +30,15 @@ const Home: React.FC<Props> = (props) => {
     (state) => state.weatherInfo.city
   );
 
+  const fiveDaysForecast = useSelector<
+    RootState,
+    WeatherState["fiveDaysForecast"]
+  >((state) => state.weatherInfo.fiveDaysForecast);
+
+  // const currentWeather = useSelector<RootState, WeatherState["currentWeather"]>(
+  //   (state) => state.weatherInfo.currentWeather
+  // );
+
   const metric = useSelector<RootState, WeatherState["metric"]>(
     (state) => state.weatherInfo.metric
   );
@@ -36,6 +46,17 @@ const Home: React.FC<Props> = (props) => {
   useEffect(() => {
     const currentWeather = jsonFile;
     setCurrentWeather(currentWeather);
+    // getFiveDaysForecast();
+    if (fiveDaysForecast) {
+      console.log(
+        fiveDaysForecast.data.DailyForecasts.map((oneDay: any) => {
+          console.log(oneDay, "oneDay");
+        }),
+        "forecast in home"
+      );
+    }
+    console.log(city, "city in home");
+
     // if (city) console.log(city, "city in home");
     // console.log("json", currentWeather);
     // const getWeather = async () => {
@@ -49,7 +70,7 @@ const Home: React.FC<Props> = (props) => {
   return (
     <div>
       <SearchBar />
-      {currentWeather ? (
+      {currentWeather && city ? (
         <>
           <WeatherCard
             iconPhrase={currentWeather.WeatherText}
@@ -62,6 +83,11 @@ const Home: React.FC<Props> = (props) => {
           <FavoriteButton city={city} />
         </>
       ) : null}
+      <div>
+        {fiveDaysForecast && city ? (
+          <FiveDaysForecast fiveDaysForecast={fiveDaysForecast} city={city} />
+        ) : null}
+      </div>
     </div>
   );
 };
