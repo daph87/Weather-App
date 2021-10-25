@@ -1,5 +1,5 @@
 /** @format */
-
+import "./home.scss"
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -69,10 +69,11 @@ const Home: React.FC<Props> = (props) => {
   const [currentWeather, setCurrentWeather] = useState<any>(undefined);
 
   return (
-    <div>
+    <div id="homeContainer">
       <SearchBar />
       {currentWeather && city ? (
         <>
+        <div id = "currentWeatherContainer">
           <WeatherCard
             iconPhrase={currentWeather.WeatherText}
             iconSource={currentWeather.WeatherIcon}
@@ -82,9 +83,10 @@ const Home: React.FC<Props> = (props) => {
             temperature={showUnit(metric, currentWeather)}
           />
           <FavoriteButton city={city} />
+        </div>
         </>
       ) : null}
-      <div>
+      <div id="fiveDaysForecastContainer">
         {fiveDaysForecast && city ? (
           <FiveDaysForecast metric={metric} fiveDaysForecast={fiveDaysForecast} city={city} />
         ) : null}

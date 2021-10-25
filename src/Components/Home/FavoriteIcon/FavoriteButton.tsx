@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+import "./favoriteButton.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,12 +43,14 @@ const FavoriteButton: React.FC<Props> = (props) => {
   };
 
   return (
-    <FontAwesomeIcon
-      onClick={toggleFavorites}
-      icon={faStar}
-      size='3x'
-      color={toggleFav ? "#d7d705" : "#a09da2"}
-    />
+    <div id="favoriteIcon">
+      <FontAwesomeIcon
+        onClick={toggleFavorites}
+        icon={faStar}
+        size='3x'
+        color={toggleFav ? "#d7d705" : "#a09da2"}
+      />
+    </div>
   );
 };
 

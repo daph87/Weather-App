@@ -45,7 +45,7 @@ const SearchBar: React.FC = () => {
     let locationDiv = locations.locationsJson.map((location: any) => {
       return (
         <div
-          className='location'
+          className={`location${location}`}
           key={location.Key}
           onClick={() => chooseCity(location)}>
           {location.LocalizedName}, {location.Country.LocalizedName}
@@ -57,7 +57,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <form
-      className='LocationSearch'
+      id='locationSearch'
       onSubmit={() => {
         console.log("Hello World");
       }}>
