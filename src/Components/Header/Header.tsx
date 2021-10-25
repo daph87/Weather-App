@@ -32,9 +32,9 @@ const Header: React.FC = () => {
   );
 
   const switchMetric = () => {
-    metric === "Celsius"
-      ? setMetricConversion("Fahrenheit")
-      : setMetricConversion("Celsius");
+    metric === "C"
+      ? setMetricConversion("F")
+      : setMetricConversion("C");
   };
 
   const themeToggler = () => {
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
               />
             </div>
             <div className='switchUnit' onClick={switchMetric}>
-              {metric === "Celsius" ? <p>C° to F°</p> : <p>F° to C°</p>}
+              {metric === "C" ? <p>C° to F°</p> : <p>F° to C°</p>}
             </div>
           </div>
 

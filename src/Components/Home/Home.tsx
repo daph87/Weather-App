@@ -46,15 +46,16 @@ const Home: React.FC<Props> = (props) => {
   useEffect(() => {
     const currentWeather = jsonFile;
     setCurrentWeather(currentWeather);
-    // getFiveDaysForecast();
-    if (fiveDaysForecast) {
-      console.log(
-        fiveDaysForecast.data.DailyForecasts.map((oneDay: any) => {
-          console.log(oneDay, "oneDay");
-        }),
-        "forecast in home"
-      );
-    }
+    // getFiveDaysForecast(metric);
+    console.log(metric, 'metric')
+    // if (fiveDaysForecast) {
+    //   console.log(
+    //     fiveDaysForecast.data.DailyForecasts.map((oneDay: any) => {
+    //       console.log(oneDay, "oneDay");
+    //     }),
+    //     "forecast in home"
+    //   );
+    // }
     console.log(city, "city in home");
 
     // if (city) console.log(city, "city in home");
@@ -63,7 +64,7 @@ const Home: React.FC<Props> = (props) => {
     //   await getCurrentWeather();
     // };
     // getWeather();
-  }, [city]);
+  }, [city, metric]);
 
   const [currentWeather, setCurrentWeather] = useState<any>(undefined);
 
@@ -85,7 +86,7 @@ const Home: React.FC<Props> = (props) => {
       ) : null}
       <div>
         {fiveDaysForecast && city ? (
-          <FiveDaysForecast fiveDaysForecast={fiveDaysForecast} city={city} />
+          <FiveDaysForecast metric={metric} fiveDaysForecast={fiveDaysForecast} city={city} />
         ) : null}
       </div>
     </div>

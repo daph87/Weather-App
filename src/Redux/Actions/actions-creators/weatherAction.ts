@@ -65,14 +65,15 @@ export const setMetricConversion =
 
 export const getFiveDaysForecast =
   // location: number, apiKey: string
-  () => async (dispatch: Dispatch<ActionWeather>) => {
+  (metric:string) => async (dispatch: Dispatch<ActionWeather>) => {
+
     await api
       .get(
-        `forecasts/v1/daily/5day/215854?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP`
+        `forecasts/v1/daily/5day/215854?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP&metric=${metric === "C"?true:false}`
       )
       .then(
         (response) => {
-          console.log(response, "get5days");
+          console.log(response, "get5daysRedux");
           const data = response;
 
           dispatch({

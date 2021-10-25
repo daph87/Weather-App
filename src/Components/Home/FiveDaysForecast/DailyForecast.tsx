@@ -8,9 +8,10 @@ import "./dailyForecast.scss";
 type Props = {
   dailyForecast: any;
   city: any;
+  metric:string
 };
 const DailyForecast: React.FC<Props> = (props) => {
-  const { dailyForecast, city } = props;
+  const { dailyForecast, city,metric } = props;
 
   const maxTemp = dailyForecast.Temperature.Maximum.Value;
   const minTemp = dailyForecast.Temperature.Minimum.Value;
@@ -24,7 +25,7 @@ const DailyForecast: React.FC<Props> = (props) => {
     <div className='dailyForecastContainer'>
       <p className='day'>{moment(dailyForecast.Date).format("dddd")}</p>
       <p className='temperature'>
-        {minTemp}° - {maxTemp}°
+        {minTemp} {metric}° - {maxTemp} {metric}°
       </p>
       <div className='icon'>
         <img src={iconSource} alt={iconPhrase} />
