@@ -8,7 +8,7 @@ import "./dailyForecast.scss";
 type Props = {
   dailyForecast: any;
   city: any;
-  metric:string
+  metric:string;
 };
 const DailyForecast: React.FC<Props> = (props) => {
   const { dailyForecast, city,metric } = props;

@@ -43,7 +43,7 @@ export interface WeatherState {
   // | undefined;
   currentWeatherError: AxiosResponse<string> | string | undefined;
   city: any | undefined;
-  metric: string;
+  metric: any;
   weather: any;
   fiveDaysForecastError: any;
   fiveDaysForecast: any;

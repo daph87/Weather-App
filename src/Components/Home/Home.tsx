@@ -1,6 +1,6 @@
 /** @format */
 import "./home.scss"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { weatherActionCreators } from "../../Redux/index";
@@ -42,21 +42,28 @@ const Home: React.FC<Props> = (props) => {
   const metric = useSelector<RootState, WeatherState["metric"]>(
     (state) => state.weatherInfo.metric
   );
+  const stateRef = useRef();
+  stateRef.current = city;
+
 
   useEffect(() => {
-    const currentWeather = jsonFile;
-    setCurrentWeather(currentWeather);
-    // getFiveDaysForecast(metric);
-    console.log(metric, 'metric')
-    // if (fiveDaysForecast) {
-    //   console.log(
-    //     fiveDaysForecast.data.DailyForecasts.map((oneDay: any) => {
-    //       console.log(oneDay, "oneDay");
-    //     }),
-    //     "forecast in home"
-    //   );
+    // if(stateRef.current){
+      const currentWeather = jsonFile;
+      setCurrentWeather(currentWeather);
+      // getFiveDaysForecast(metric);
+      console.log(metric, ' first useEffect')
+      // if (fiveDaysForecast) {
+      //   console.log(
+      //     fiveDaysForecast.data.DailyForecasts.map((oneDay: any) => {
+      //       console.log(oneDay, "oneDay");
+      //     }),
+      //     "forecast in home"
+      //   );
+      // }
+      // console.log(city, "city in first Use effect");
     // }
-    console.log(city, "city in home");
+   
+    return () => {}
 
     // if (city) console.log(city, "city in home");
     // console.log("json", currentWeather);
@@ -64,7 +71,15 @@ const Home: React.FC<Props> = (props) => {
     //   await getCurrentWeather();
     // };
     // getWeather();
-  }, [city, metric]);
+  }, [city]);
+
+  useEffect(() => {
+    const currentWeather = jsonFile;
+    setCurrentWeather(currentWeather);
+    // console.log(metric, 'metric in metric use effect')
+  
+    // console.log(city, "city in in metric use effect");
+  }, [metric]);
 
   const [currentWeather, setCurrentWeather] = useState<any>(undefined);
 

@@ -14,10 +14,10 @@ const FiveDaysForecast: React.FC<Props> = (props) => {
   const { fiveDaysForecast, city,metric } = props;
   return (
     <>
-      <h1>{fiveDaysForecast.data.Headline.Text}</h1>
-      <div className='fiveDaysForecastBox'>
+      <h1 key="helo">{fiveDaysForecast.data.Headline.Text}</h1>
+      <div key="hello" className='fiveDaysForecastBox'>
         {fiveDaysForecast.data.DailyForecasts.map((dailyForecast: any) => (
-          <DailyForecast metric={metric} dailyForecast={dailyForecast} city={city} />
+          <DailyForecast key={dailyForecast.EpochDate} metric={metric} dailyForecast={dailyForecast} city={city} />
         ))}
       </div>
     </>
