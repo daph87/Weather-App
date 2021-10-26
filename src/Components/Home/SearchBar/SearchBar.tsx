@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import debounce from "lodash.debounce";
-import { getLocations } from "../../../Services/getLocations";
+import { getLocationsAutoComplete } from "../../../Services/getAutoComplete";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { weatherActionCreators } from "../../../Redux";
@@ -22,6 +22,7 @@ const SearchBar: React.FC = () => {
   };
 
   const chooseCity = (location: any) => {
+    console.log(location, "city");
     setShowAutoComplete(false);
     setCity(location);
   };
@@ -34,26 +35,32 @@ const SearchBar: React.FC = () => {
         setShowAutoComplete(false);
         return false;
       }
-      const loc = await getLocations();
-      setLocations(loc);
+      console.log(cityInput, "cityInput");
+      await getLocationsAutoComplete().then((response) => {
+        setLocations(response);
+        console.log(response, "response");
+      });
+      console.log(locations, "haaaaaaaaaaaaaaaaaaaaaaaaaaa");
       setShowAutoComplete(true);
     }, 500)
   ).current;
 
-  const renderAutoComplete = () => {
-    if (!showAutoComplete || !locations) return false;
-    let locationDiv = locations.locationsJson.map((location: any) => {
-      return (
-        <div
-          className={`location${location}`}
-          key={location.Key}
-          onClick={() => chooseCity(location)}>
-          {location.LocalizedName}, {location.Country.LocalizedName}
-        </div>
-      );
-    });
-    return locationDiv;
-  };
+  // const renderAutoComplete = () => {
+  //   console.log(locations, "loc");
+  //   if (!showAutoComplete || !locations) return false;
+  //   let locationDiv = locations.locationsJson.map((location: any) => {
+  //     return (
+  //       <div
+  //         className={`location${location}`}
+  //         key={location.Key}
+  //         onClick={() => chooseCity(location)}>
+  //         {location.LocalizedName}, {location.Country.LocalizedName}
+  //       </div>
+  //     );
+  //   });
+  //   return locationDiv;
+  // };
+  console.log(locations, "locations before render");
 
   return (
     <form
@@ -68,7 +75,7 @@ const SearchBar: React.FC = () => {
         className='form-control'
         placeholder='Search city'
       />
-      <div>{renderAutoComplete()}</div>
+      {/* <div>{renderAutoComplete()}</div> */}
     </form>
   );
 };

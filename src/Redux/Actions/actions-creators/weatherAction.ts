@@ -7,38 +7,38 @@ import { ActionWeather } from "../types/weather";
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
 import { AxiosResponse } from "axios";
 
-// export const getCurrentWeather =
-//   // location: number, apiKey: string
-//   () => async (dispatch: Dispatch<ActionWeather>) => {
-//     await api
-//       .get(
-//         `currentconditions/v1/215854?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP`
-//       )
-//       .then(
-//         (response: AxiosResponse<CurrentWeatherData>) => {
-//           console.log(response, "getCountry");
-//           const data = response.data;
-
-//           dispatch({
-//             type: WeatherTypes.CURRENT_WEATHER,
-//             payload: data,
-//           });
-//         },
-//         (error) => {
-//           dispatch({
-//             type: WeatherTypes.CURRENT_WEATHER_ERROR,
-//             payload: error,
-//           });
-//         }
-//       );
-//   };
 export const getCurrentWeather =
-  (weather: CurrentWeatherData) => (dispatch: Dispatch<ActionWeather>) => {
-    dispatch({
-      type: WeatherTypes.CURRENT_WEATHER,
-      payload: weather,
-    });
+  // location: number, apiKey: string
+  (city: any) => async (dispatch: Dispatch<ActionWeather>) => {
+    await api
+      .get(
+        `currentconditions/v1/${city.Key}?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP`
+      )
+      .then(
+        (response: AxiosResponse<any>) => {
+          console.log(response, "getCountry");
+          const data = response.data[0];
+
+          dispatch({
+            type: WeatherTypes.CURRENT_WEATHER,
+            payload: data,
+          });
+        },
+        (error) => {
+          dispatch({
+            type: WeatherTypes.CURRENT_WEATHER_ERROR,
+            payload: error,
+          });
+        }
+      );
   };
+// export const getCurrentWeather =
+//   (weather: CurrentWeatherData) => (dispatch: Dispatch<ActionWeather>) => {
+//     dispatch({
+//       type: WeatherTypes.CURRENT_WEATHER,
+//       payload: weather,
+//     });
+//   };
 
 export const setWeather =
   (weather: any) => (dispatch: Dispatch<ActionWeather>) => {
@@ -65,16 +65,22 @@ export const setMetricConversion =
 
 export const getFiveDaysForecast =
   // location: number, apiKey: string
-  (metric:string) => async (dispatch: Dispatch<ActionWeather>) => {
+  (metric: string, city: any) => async (dispatch: Dispatch<ActionWeather>) => {
+    console.log(metric, "metric");
+    console.log(city, "city");
 
     await api
       .get(
-        `forecasts/v1/daily/5day/215854?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP&metric=${metric === "C"?true:false}`
+        `forecasts/v1/daily/5day/${
+          city.Key
+        }?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP&metric=${
+          metric === "C" ? true : false
+        }`
       )
       .then(
         (response) => {
           console.log(response, "get5daysRedux");
-          const data = response;
+          const data = response.data;
 
           dispatch({
             type: WeatherTypes.FIVE_DAYS_FORECAST,
