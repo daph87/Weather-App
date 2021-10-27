@@ -1,25 +1,31 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { showUnit } from "../../Helpers/showUnit";
 import { weatherActionCreators } from "../../Redux";
-import { WeatherState } from "../../Redux/Actions/types/weather";
+import { setCity } from "../../Redux/Actions/actions-creators/weatherAction";
+import { ActionWeather, WeatherState } from "../../Redux/Actions/types/weather";
 import jsonFile from "../../Redux/currentWeather.json";
 import { RootState } from "../../Redux/Reducers/rootReducer";
+import { CityData } from "../../Types/CityDataType";
+import { CurrentWeatherData } from "../../Types/CurrentWeatherDataType";
 import WeatherCard from "../Home/WeatherComponents/WeatherCard";
 
 type Props = {
-  city: any;
-  onGoBack: any;
+  city: CityData;
+  
 };
 const OneFavoritesCity: React.FC<Props> = (props) => {
-  const { city, onGoBack } = props;
+  const { city } = props;
+
   const [currentWeather, setCurrentWeather] = useState<any>(undefined);
+  const history = useHistory();
 
   const dispatch = useDispatch();
-  const { getCurrentWeather } = bindActionCreators(
+  const { getCurrentWeather, setCity } = bindActionCreators(
     weatherActionCreators,
     dispatch
   );
@@ -29,16 +35,25 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
   );
 
   useEffect(() => {
-    // getCurrentWeather(city.Key);
-    const currentWeather = jsonFile;
-    setCurrentWeather(currentWeather);
-    console.log(currentWeather, "current in one favorite");
+    const getFavCurrentWeather = async()=>{
+      const favCurrentWeater = await getCurrentWeather(city);
+    setCurrentWeather(favCurrentWeater)
+    }
+    getFavCurrentWeather()
+    // const currentWeather = jsonFile;
+    // setCurrentWeather(currentWeather);
   }, []);
+ 
+  const onGoBack = () =>{
+    setCity(city)
+    history.push("/home")
+  }
 
   return (
     <div>
       {currentWeather ? (
         <WeatherCard
+        onClick={onGoBack}
           iconPhrase={currentWeather.WeatherText}
           iconSource={currentWeather.WeatherIcon}
           className='currentWeatherCard'

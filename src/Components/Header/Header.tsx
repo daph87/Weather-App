@@ -16,8 +16,6 @@ import { weatherActionCreators } from "../../Redux";
 import { RootState } from "../../Redux/Reducers/rootReducer";
 import { WeatherState } from "../../Redux/Actions/types/weather";
 
-// fontawesome.library.add(faCheckSquare, faCoffee);
-
 const Header: React.FC = () => {
   const [theme, setTheme] = useState("light");
 
@@ -59,8 +57,6 @@ const Header: React.FC = () => {
           <div className='title'>The Weather Channel</div>
 
           <div className='links'>
-            {/* <FontAwesome name='toggle' className='fas fa-toggle-on' /> */}
-
             <NavLink exact to='/'>
               Home
             </NavLink>

@@ -1,7 +1,6 @@
 /** @format */
 
 import { FavoritesCitiesTypes } from "../Enums/favoritesCitiesTypes";
-import { REHYDRATE } from "redux-persist";
 import {
   FavoritesCitiesState,
   ActionFavoritesCities,
@@ -19,14 +18,13 @@ export default (
       return {
         ...state,
         favoritesCities: [...state.favoritesCities, action.payload],
-        // favoritesCities: action.payload,
       };
 
     case FavoritesCitiesTypes.DELETE_FAVORITE_CITY:
       return {
         ...state,
-        favoritesCities: state.favoritesCities.filter(
-          (fav: any) => fav.Key !== action.payload
+        favoritesCities: state.favoritesCities?.filter(
+          (fav) => fav.Key !== action.payload
         ),
       };
 

@@ -3,21 +3,21 @@
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
 import { WeatherTypes } from "../../Enums/weatherTypes";
 import { AxiosResponse } from "axios";
+import { CityData } from "../../../Types/CityDataType";
+import { FiveDaysData } from "../../../Types/FiveDaysDataType";
 
 export interface CurrentWeatherAction {
   type: WeatherTypes.CURRENT_WEATHER;
-  payload: AxiosResponse<CurrentWeatherData> | CurrentWeatherData;
+  // payload: AxiosResponse<CurrentWeatherData> | CurrentWeatherData;
+  payload:  CurrentWeatherData | undefined;
+
 }
 
-export interface CityKeyAction {
-  type: WeatherTypes.SET_CITY_KEY;
-  payload: string;
+export interface CityAction {
+  type: WeatherTypes.SET_CITY;
+  payload: CityData;
 }
 
-export interface CurrentWeatherErrorsAction {
-  type: WeatherTypes.CURRENT_WEATHER_ERROR;
-  payload: AxiosResponse<string> | string;
-}
 export interface MetricConversionAction {
   type: WeatherTypes.SET_METRIC_CONVERSION;
   payload: string;
@@ -25,35 +25,25 @@ export interface MetricConversionAction {
 
 export interface GetFiveDaysForecastAction {
   type: WeatherTypes.FIVE_DAYS_FORECAST;
-  payload: any;
+  payload: FiveDaysData | undefined;
 }
 
-export interface GetFiveDaysForecastActionError {
-  type: WeatherTypes.FIVE_DAYS_FORECAST_ERROR;
-  payload: any;
-}
-export interface SetWeatherAction {
-  type: WeatherTypes.SET_WEATHER;
-  payload: any;
-}
+
 export interface WeatherState {
-  currentWeather: any;
+  currentWeather?: CurrentWeatherData | undefined;
   // | AxiosResponse<CurrentWeatherData>
   // | CurrentWeatherData
   // | undefined;
-  currentWeatherError: AxiosResponse<string> | string | undefined;
-  city: any | undefined;
-  metric: any;
-  weather: any;
-  fiveDaysForecastError: any;
-  fiveDaysForecast: any;
+  // currentWeatherError: string | undefined;
+  city: CityData | undefined;
+  metric: string;
+  // weather: any;
+  fiveDaysForecast:  FiveDaysData | undefined;
 }
+
 
 export type ActionWeather =
   | CurrentWeatherAction
-  | CurrentWeatherErrorsAction
-  | CityKeyAction
+  | CityAction
   | MetricConversionAction
-  | SetWeatherAction
   | GetFiveDaysForecastAction
-  | GetFiveDaysForecastActionError;

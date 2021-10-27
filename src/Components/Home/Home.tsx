@@ -14,13 +14,12 @@ import { showUnit } from "../../Helpers/showUnit";
 import FavoriteButton from "./FavoriteIcon/FavoriteButton";
 import FiveDaysForecast from "./FiveDaysForecast/FiveDaysForecast";
 import { getCityWithGeolocalisation } from "../../Services/getGeolocalisation";
-import api from "../../Services/api";
+import { CityData } from "../../Types/CityDataType";
 type Props = {
   getCurrentWeather: () => void;
 };
 
 const Home: React.FC<Props> = (props) => {
-  const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
   const { getCurrentWeather, getFiveDaysForecast, setCity } =
@@ -41,59 +40,31 @@ const Home: React.FC<Props> = (props) => {
 
   const metric = useSelector<RootState, WeatherState["metric"]>(
     (state) => state.weatherInfo.metric
-  ); // const [currentWeather, setCurrentWeather] = useState<any>(undefined);
+  ); 
 
-  const stateRef = useRef();
+  const stateRef: { current: CityData | undefined; } = useRef();
   stateRef.current = city;
 
-  // useEffect(() => {
-  //   const getCityWithGeolocalisation = () => {
-  //     navigator.permissions.query({ name: "geolocation" }).then((result) => {
-  //       if (result.state === "prompt" || result.state === "granted") {
-  //         console.log(result.state, "prompt");
-  //         navigator.geolocation.getCurrentPosition(async (location) => {
-  //           const { latitude, longitude } = location.coords;
-  //           await api
-  //             .get(
-  //               `locations/v1/cities/geoposition/search?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP&q=${latitude},${longitude}`
-  //             )
-  //             .then((response) => {
-  //               const res = response.data;
-  //               console.log(res, "response geo");
-  //               setCity({ Key: res.Key, LocalizedName: res.LocalizedName });
-  //             })
-  //             .catch((error) => {
-  //               console.log(error, "test failed");
-  //             });
-  //         });
-  //       } else if (result.state === "denied") {
-  //         console.log("denied");
-  //         setCity({ Key: "215854", LocalizedName: "Tel Aviv" });
-  //       }
-  //     });
-  //   };
-  //   getCityWithGeolocalisation();
-  // }, []);
 
-  // useEffect(() => {
-  //   if (city) {
-  //     getCurrentWeather(city);
-  //     getFiveDaysForecast(metric, city);
-  //     // const currentWeather = jsonFile;
-  //     // setCurrentWeather(currentWeather);
+  useEffect(() => {
+    if(city){
+      console.log(city, "city in in metric use effect");
 
-  //     console.log(metric, "metric in metric use effect");
+      getCurrentWeather(city);
+      getFiveDaysForecast(metric, city);
+    }
+    else{
+      console.log(city,'city in geoloc')
+      getCityWithGeolocalisation(setCity);
 
-  //     console.log(city, "city in in metric use effect");
-  //   }
-  // }, [metric, city]);
+    }
+  }, [metric, city]);
 
-  // const [currentWeather, setCurrentWeather] = useState<any>(undefined);
 
   return (
     <div id='homeContainer'>
       <SearchBar />
-      {/* {currentWeather && city ? (
+      {currentWeather && city ? (
         <>
           <div id='currentWeatherContainer'>
             <WeatherCard
@@ -116,7 +87,7 @@ const Home: React.FC<Props> = (props) => {
             city={city}
           />
         ) : null}
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -7,6 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 import Layout from "./Components/Layout";
 import { Provider } from "react-redux";
 import { reduxStore } from "./Redux/store";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+
 
 ReactDOM.render(
   <Provider store={reduxStore.store}>

@@ -6,11 +6,11 @@ import { WeatherState, ActionWeather } from "../Actions/types/weather";
 
 const initialState: WeatherState = {
   currentWeather: undefined,
-  currentWeatherError: undefined,
+  // currentWeatherError: undefined,
   city: undefined,
   metric: "Celsius",
-  weather: undefined,
-  fiveDaysForecastError: undefined,
+  // weather: undefined,
+  // fiveDaysForecastError: undefined,
   fiveDaysForecast: undefined,
 };
 export default (state = initialState, action: ActionWeather): WeatherState => {
@@ -20,22 +20,22 @@ export default (state = initialState, action: ActionWeather): WeatherState => {
         ...state,
         currentWeather: action.payload,
       };
-    case WeatherTypes.CURRENT_WEATHER_ERROR:
-      return {
-        ...state,
-        currentWeatherError: action.payload,
-      };
+    // case WeatherTypes.CURRENT_WEATHER_ERROR:
+    //   return {
+    //     ...state,
+    //     currentWeatherError: action.payload,
+    //   };
 
-    case WeatherTypes.SET_CITY_KEY:
+    case WeatherTypes.SET_CITY:
       return {
         ...state,
         city: action.payload,
       };
-    case WeatherTypes.SET_WEATHER:
-      return {
-        ...state,
-        weather: action.payload,
-      };
+    // case WeatherTypes.SET_WEATHER:
+    //   return {
+    //     ...state,
+    //     weather: action.payload,
+    //   };
     case WeatherTypes.SET_METRIC_CONVERSION:
       return {
         ...state,
@@ -47,11 +47,7 @@ export default (state = initialState, action: ActionWeather): WeatherState => {
         ...state,
         fiveDaysForecast: action.payload,
       };
-    case WeatherTypes.FIVE_DAYS_FORECAST_ERROR:
-      return {
-        ...state,
-        fiveDaysForecastError: action.payload,
-      };
+
     // case WeatherTypes.SET_FAVORITE_ICON_ACTIVE:
     //   return {
     //     ...state,

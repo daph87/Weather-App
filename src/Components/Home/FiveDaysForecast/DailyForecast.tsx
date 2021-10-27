@@ -4,10 +4,12 @@ import React from "react";
 import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
 import moment from "moment";
 import "./dailyForecast.scss";
+import { CityData } from "../../../Types/CityDataType";
+import { DailyDataType } from "../../../Types/DailyDataType";
 
 type Props = {
-  dailyForecast: any;
-  city: any;
+  dailyForecast: DailyDataType;
+  city: CityData;
   metric:string;
 };
 const DailyForecast: React.FC<Props> = (props) => {

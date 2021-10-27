@@ -5,10 +5,11 @@ import "./weatherCard.scss";
 import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
 
 type Props = {
+  onClick?: ()=> void;
   className: string;
   cardKey: string;
   cityName?: string;
-  iconSource?: any;
+  iconSource: string|number;
   alt?: string;
   temperature?: string;
   iconPhrase?: string;
@@ -16,16 +17,16 @@ type Props = {
 
 const WeatherCard: React.FC<Props> = (props) => {
   const {
-    className,
     cardKey,
     cityName,
     iconSource,
     alt,
     temperature,
     iconPhrase,
+    onClick
   } = props;
   return (
-    <div key={cardKey} className='weatherCard'>
+    <div key={cardKey} className='weatherCard' onClick={onClick}>
       <p className='cityName'>{cityName}</p>
       <div className='icon'>
         <img src={getWeatherIconUrl(iconSource)} alt={alt} />

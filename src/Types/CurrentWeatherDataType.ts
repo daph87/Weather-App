@@ -1,13 +1,14 @@
 /** @format */
 
-export type CurrentWeatherData = [
+export type CurrentWeatherData = 
   {
     LocalObservationDateTime: string;
     EpochTime: number;
-    WeatherIcon?: number;
+    WeatherIcon: number | string;
     HasPrecipitation: boolean;
     PrecipitationType: string | null;
     IsDayTime: boolean;
+    WeatherText:string;
     Temperature: {
       Metric: {
         Value: number;
@@ -23,4 +24,4 @@ export type CurrentWeatherData = [
     MobileLink: string;
     Link: string;
   }
-];
+;

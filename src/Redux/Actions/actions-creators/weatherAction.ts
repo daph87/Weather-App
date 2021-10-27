@@ -6,18 +6,21 @@ import { WeatherTypes } from "../../Enums/weatherTypes";
 import { ActionWeather } from "../types/weather";
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
 import { AxiosResponse } from "axios";
+import { CityData } from "../../../Types/CityDataType";
 
-export const getCurrentWeather =
+
+// apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP
+export const getCurrentWeather  =
   // location: number, apiKey: string
-  (city: any) => async (dispatch: Dispatch<ActionWeather>) => {
+  (city: CityData) => async (dispatch: Dispatch<ActionWeather>) => {
+    let data;
     await api
       .get(
-        `currentconditions/v1/${city.Key}?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP`
+        `currentconditions/v1/${city.Key}?apikey=Bdtfu2OnDFSAmpquELvzARuxy4FlE2E1`
       )
       .then(
-        (response: AxiosResponse<any>) => {
-          console.log(response, "getCountry");
-          const data = response.data[0];
+        (response) => {
+           data = response.data[0];
 
           dispatch({
             type: WeatherTypes.CURRENT_WEATHER,
@@ -25,12 +28,10 @@ export const getCurrentWeather =
           });
         },
         (error) => {
-          dispatch({
-            type: WeatherTypes.CURRENT_WEATHER_ERROR,
-            payload: error,
-          });
+        console.log(error)
         }
       );
+      return data
   };
 // export const getCurrentWeather =
 //   (weather: CurrentWeatherData) => (dispatch: Dispatch<ActionWeather>) => {
@@ -40,17 +41,11 @@ export const getCurrentWeather =
 //     });
 //   };
 
-export const setWeather =
-  (weather: any) => (dispatch: Dispatch<ActionWeather>) => {
-    dispatch({
-      type: WeatherTypes.SET_WEATHER,
-      payload: weather,
-    });
-  };
 
-export const setCity = (city: any) => (dispatch: Dispatch<ActionWeather>) => {
+export const setCity = (city: CityData) => (dispatch: Dispatch<ActionWeather>) => {
+  console.log('city in redux')
   dispatch({
-    type: WeatherTypes.SET_CITY_KEY,
+    type: WeatherTypes.SET_CITY,
     payload: city,
   });
 };
@@ -65,21 +60,21 @@ export const setMetricConversion =
 
 export const getFiveDaysForecast =
   // location: number, apiKey: string
-  (metric: string, city: any) => async (dispatch: Dispatch<ActionWeather>) => {
-    console.log(metric, "metric");
-    console.log(city, "city");
+  (metric: string, city: CityData) => async (dispatch: Dispatch<ActionWeather>) => {
+    // console.log(metric, "metric");
+    // console.log(city, "city");
 
     await api
       .get(
         `forecasts/v1/daily/5day/${
           city.Key
-        }?apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP&metric=${
+        }?apikey=Bdtfu2OnDFSAmpquELvzARuxy4FlE2E1&metric=${
           metric === "C" ? true : false
         }`
       )
       .then(
         (response) => {
-          console.log(response, "get5daysRedux");
+          // console.log(response, "get5daysRedux");
           const data = response.data;
 
           dispatch({
@@ -88,10 +83,8 @@ export const getFiveDaysForecast =
           });
         },
         (error) => {
-          dispatch({
-            type: WeatherTypes.FIVE_DAYS_FORECAST_ERROR,
-            payload: error,
-          });
+          console.log(error)
+
         }
       );
   };
