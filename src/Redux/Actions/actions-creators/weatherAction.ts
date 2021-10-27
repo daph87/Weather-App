@@ -50,18 +50,18 @@ export const setCity = (city: CityData) => (dispatch: Dispatch<ActionWeather>) =
   });
 };
 
-export const setMetricConversion =
-  (metric: string) => (dispatch: Dispatch<ActionWeather>) => {
+export const setUnitConversion =
+  (unit: string) => (dispatch: Dispatch<ActionWeather>) => {
     dispatch({
-      type: WeatherTypes.SET_METRIC_CONVERSION,
-      payload: metric,
+      type: WeatherTypes.SET_UNIT_CONVERSION,
+      payload: unit,
     });
   };
 
 export const getFiveDaysForecast =
   // location: number, apiKey: string
-  (metric: string, city: CityData) => async (dispatch: Dispatch<ActionWeather>) => {
-    // console.log(metric, "metric");
+  (unit: string, city: CityData) => async (dispatch: Dispatch<ActionWeather>) => {
+    // console.log(unit, "unit");
     // console.log(city, "city");
 
     await api
@@ -69,7 +69,7 @@ export const getFiveDaysForecast =
         `forecasts/v1/daily/5day/${
           city.Key
         }?apikey=Bdtfu2OnDFSAmpquELvzARuxy4FlE2E1&metric=${
-          metric === "C" ? true : false
+          unit === "C" ? true : false
         }`
       )
       .then(

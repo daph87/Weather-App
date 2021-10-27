@@ -18,8 +18,8 @@ export interface CityAction {
   payload: CityData;
 }
 
-export interface MetricConversionAction {
-  type: WeatherTypes.SET_METRIC_CONVERSION;
+export interface UnitConversionAction {
+  type: WeatherTypes.SET_UNIT_CONVERSION;
   payload: string;
 }
 
@@ -36,7 +36,7 @@ export interface WeatherState {
   // | undefined;
   // currentWeatherError: string | undefined;
   city: CityData | undefined;
-  metric: string;
+  unit: string;
   // weather: any;
   fiveDaysForecast:  FiveDaysData | undefined;
 }
@@ -45,5 +45,5 @@ export interface WeatherState {
 export type ActionWeather =
   | CurrentWeatherAction
   | CityAction
-  | MetricConversionAction
+  | UnitConversionAction
   | GetFiveDaysForecastAction

@@ -7,17 +7,32 @@ h1 {
   font-size: 1.3em;
 }
 .dailyForecastContainer {
+  height:225px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   text-align: center;
   margin-left: 2vw;
   margin-right: 2vw;
   margin-top: 2vw;
   margin-bottom: 2vw;
-  width: 100px;
-  padding: 2vw;
+  width: 160px;
+  padding: 1vw;
   text-transform: uppercase;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 8px 17px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  .dayAndDateContainer{
+display: flex;
+justify-content:space-around;
+.day{
+  font-size: 14px;
+  padding: 4px;
 }
+.date{
+  font-size: 11px;
+}
+  }
+}
+
+

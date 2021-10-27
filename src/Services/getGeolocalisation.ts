@@ -1,6 +1,7 @@
 /** @format */
 
 import { Dispatch } from "redux";
+
 import { ActionWeather } from "../Redux/Actions/types/weather";
 import { CityData } from "../Types/CityDataType";
 import api from "./api";

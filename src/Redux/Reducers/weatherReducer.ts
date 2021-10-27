@@ -8,7 +8,7 @@ const initialState: WeatherState = {
   currentWeather: undefined,
   // currentWeatherError: undefined,
   city: undefined,
-  metric: "Celsius",
+  unit: "Celsius",
   // weather: undefined,
   // fiveDaysForecastError: undefined,
   fiveDaysForecast: undefined,
@@ -36,10 +36,10 @@ export default (state = initialState, action: ActionWeather): WeatherState => {
     //     ...state,
     //     weather: action.payload,
     //   };
-    case WeatherTypes.SET_METRIC_CONVERSION:
+    case WeatherTypes.SET_UNIT_CONVERSION:
       return {
         ...state,
-        metric: action.payload,
+        unit: action.payload,
       };
 
     case WeatherTypes.FIVE_DAYS_FORECAST:

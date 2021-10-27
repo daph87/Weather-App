@@ -1,38 +1,37 @@
 /** @format */
 
 import React, { useState } from "react";
-
-import "./styles.scss";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "../Themes/GlobalStyles";
-import { lightTheme, darkTheme } from "../Themes/Themes";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToggleOn, faToggleOff } from "@fortawesome/free-solid-svg-icons";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import { GlobalStyles } from "../Themes/GlobalStyles";
+import { lightTheme, darkTheme } from "../Themes/Themes";
 import { weatherActionCreators } from "../../Redux";
 import { RootState } from "../../Redux/Reducers/rootReducer";
 import { WeatherState } from "../../Redux/Actions/types/weather";
+import "./header.scss";
 
 const Header: React.FC = () => {
   const [theme, setTheme] = useState("light");
 
   const dispatch = useDispatch();
-  const { setMetricConversion } = bindActionCreators(
+  const { setUnitConversion } = bindActionCreators(
     weatherActionCreators,
     dispatch
   );
 
-  const metric = useSelector<RootState, WeatherState["metric"]>(
-    (state) => state.weatherInfo.metric
+  const unit = useSelector<RootState, WeatherState["unit"]>(
+    (state) => state.weatherInfo.unit
   );
 
-  const switchMetric = () => {
-    metric === "C"
-      ? setMetricConversion("F")
-      : setMetricConversion("C");
+  const switchUnit = () => {
+    unit === "C"
+      ? setUnitConversion("F")
+      : setUnitConversion("C");
   };
 
   const themeToggler = () => {
@@ -49,8 +48,8 @@ const Header: React.FC = () => {
                 icon={theme === "light" ? faToggleOff : faToggleOn}
               />
             </div>
-            <div className='switchUnit' onClick={switchMetric}>
-              {metric === "C" ? <p>C° to F°</p> : <p>F° to C°</p>}
+            <div className='switchUnit' onClick={switchUnit}>
+              {unit === "C" ? <p>C° to F°</p> : <p>F° to C°</p>}
             </div>
           </div>
 

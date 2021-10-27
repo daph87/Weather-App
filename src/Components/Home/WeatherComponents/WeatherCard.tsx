@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+
 import "./weatherCard.scss";
 import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
 

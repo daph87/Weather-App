@@ -2,11 +2,12 @@
 
 import React, { useRef, useState } from "react";
 import debounce from "lodash.debounce";
-import { getLocationsAutoComplete } from "../../../Services/getAutoComplete";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { weatherActionCreators } from "../../../Redux";
 import { MDBInput } from "mdb-react-ui-kit";
+
+import { getLocationsAutoComplete } from "../../../Services/getAutoComplete";
+import { weatherActionCreators } from "../../../Redux";
 import { CityData } from "../../../Types/CityDataType";
 
 const SearchBar: React.FC = () => {
@@ -15,6 +16,7 @@ const SearchBar: React.FC = () => {
 
   const [cityInput, setCityInput] = useState<string>("");
   const [locations, setLocations] = useState<CityData[] | undefined>(undefined);
+  
   const [showAutoComplete, setShowAutoComplete] = useState<boolean>(true);
 
   const onChangeCity = (event: React.FormEvent<HTMLInputElement>) => {

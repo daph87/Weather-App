@@ -1,7 +1,7 @@
 /** @format */
 
-import { AxiosResponse } from "axios";
 import React from "react";
+
 import { CityData } from "../../../Types/CityDataType";
 import { DailyDataType } from "../../../Types/DailyDataType";
 import { FiveDaysData } from "../../../Types/FiveDaysDataType";
@@ -11,10 +11,10 @@ import "./fiveDaysForecast.scss";
 type Props = {
   fiveDaysForecast?: FiveDaysData ;
   city: CityData;
-  metric: string;
+  unit: string;
 };
 const FiveDaysForecast: React.FC<Props> = (props) => {
-  const { fiveDaysForecast, city, metric } = props;
+  const { fiveDaysForecast, city, unit } = props;
   return (
     <>
       <h1>{fiveDaysForecast?.Headline.Text}</h1>
@@ -22,7 +22,7 @@ const FiveDaysForecast: React.FC<Props> = (props) => {
         {fiveDaysForecast?.DailyForecasts.map((dailyForecast: DailyDataType) => (
           <DailyForecast
             key={dailyForecast.EpochDate}
-            metric={metric}
+            unit={unit}
             dailyForecast={dailyForecast}
             city={city}
           />

@@ -1,38 +1,38 @@
 /** @format */
 
 import React from "react";
-import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
 import moment from "moment";
-import "./dailyForecast.scss";
+
+import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
 import { CityData } from "../../../Types/CityDataType";
 import { DailyDataType } from "../../../Types/DailyDataType";
+import "./dailyForecast.scss";
+
 
 type Props = {
   dailyForecast: DailyDataType;
   city: CityData;
-  metric:string;
+  unit:string;
 };
 const DailyForecast: React.FC<Props> = (props) => {
-  const { dailyForecast, city,metric } = props;
+  const { dailyForecast,unit } = props;
 
   const maxTemp = dailyForecast.Temperature.Maximum.Value;
   const minTemp = dailyForecast.Temperature.Minimum.Value;
 
-  const timeInt = Number(moment().format("HH"));
-  const dayOrNight = timeInt >= 5 && timeInt < 17 ? "Day" : "Night";
-  const iconSource = getWeatherIconUrl(dailyForecast[dayOrNight].Icon);
-  const iconPhrase = dailyForecast[dayOrNight].IconPhrase;
-
   return (
     <div className='dailyForecastContainer'>
+      <div className="dayAndDateContainer">
       <p className='day'>{moment(dailyForecast.Date).format("dddd")}</p>
+      <p className='date'>{moment(dailyForecast.Date).format("MMM Do")}</p>
+      </div>
       <p className='temperature'>
-        {minTemp} {metric}° - {maxTemp} {metric}°
+        {minTemp} {unit}° - {maxTemp} {unit}°
       </p>
       <div className='icon'>
-        <img src={iconSource} alt={iconPhrase} />
+        <img src={getWeatherIconUrl(dailyForecast.Day.Icon)} alt={dailyForecast.Day.IconPhrase} />
       </div>
-      <div className='alt'>{iconPhrase}</div>
+      <div className='description'>{dailyForecast.Day.IconPhrase}</div>
     </div>
   );
 };
