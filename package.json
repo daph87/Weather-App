@@ -67,7 +67,6 @@
     "eslint": "^7.11.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.2",
-    "prettier": "2.4.1",
-    "sass": "^1.43.3"
+    "prettier": "2.4.1"
   }
 }
