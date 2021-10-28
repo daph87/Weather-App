@@ -7,10 +7,11 @@ import { bindActionCreators } from "redux";
 
 import { showUnit } from "../../Helpers/showUnit";
 import { weatherActionCreators } from "../../Redux";
-import {  WeatherState } from "../../Redux/Actions/types/weather";
+import { WeatherState } from "../../Redux/Actions/types/weather";
 import { RootState } from "../../Redux/Reducers/rootReducer";
 import { CityData } from "../../Types/CityDataType";
 import WeatherCard from "../Home/WeatherComponents/WeatherCard";
+import Loader from "../Loader/Loader";
 
 type Props = {
   city: CityData;
@@ -33,25 +34,26 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
   );
 
   useEffect(() => {
-    const getFavCurrentWeather = async()=>{
+    const getFavCurrentWeather = async () => {
       const favCurrentWeater = await getCurrentWeather(city);
-    setCurrentWeather(favCurrentWeater)
-    }
-    getFavCurrentWeather()
+      setCurrentWeather(favCurrentWeater);
+    };
+    getFavCurrentWeather();
     // const currentWeather = jsonFile;
     // setCurrentWeather(currentWeather);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
- 
-  const onGoBack = () =>{
-    setCity(city)
-    history.push("/home")
-  }
+
+  const onGoBack = () => {
+    setCity(city);
+    history.push("/home");
+  };
 
   return (
-    <div>
+    <div key={`favWeatherContainer${city.Key}`}>
       {currentWeather ? (
         <WeatherCard
-        onClick={onGoBack}
+          onClick={onGoBack}
           iconPhrase={currentWeather.WeatherText}
           iconSource={currentWeather.WeatherIcon}
           className='currentWeatherCard'
@@ -59,7 +61,9 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
           cityName={city.LocalizedName}
           temperature={showUnit(unit, currentWeather)}
         />
-      ) : null}
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

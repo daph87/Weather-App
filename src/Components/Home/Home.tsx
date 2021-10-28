@@ -2,9 +2,10 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Toast } from "react-bootstrap";
 
 import { weatherActionCreators } from "../../Redux/index";
-import jsonFile from "../../Redux/currentWeather.json";
+// import jsonFile from "../../Redux/currentWeather.json";
 import SearchBar from "./SearchBar/SearchBar";
 import WeatherCard from "./WeatherComponents/WeatherCard";
 import { RootState } from "../../Redux/Reducers/rootReducer";
@@ -15,13 +16,13 @@ import FiveDaysForecast from "./FiveDaysForecast/FiveDaysForecast";
 import { getCityWithGeolocalisation } from "../../Services/getGeolocalisation";
 import { CityData } from "../../Types/CityDataType";
 import "./home.scss";
+import Loader from "../Loader/Loader";
 
-type Props = {
-  getCurrentWeather: () => void;
-};
+// type Props = {
+//   getCurrentWeather: () => void;
+// };
 
-const Home: React.FC<Props> = (props) => {
-
+const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { getCurrentWeather, getFiveDaysForecast, setCity } =
     bindActionCreators(weatherActionCreators, dispatch);
@@ -29,44 +30,49 @@ const Home: React.FC<Props> = (props) => {
   const city = useSelector<RootState, WeatherState["city"]>(
     (state) => state.weatherInfo.city
   );
-  const fiveDaysForecast = useSelector<
-    RootState,
-    WeatherState["fiveDaysForecast"]
-  >((state) => state.weatherInfo.fiveDaysForecast);
-  
+  // const fiveDaysForecast = useSelector<
+  //   RootState,
+  //   WeatherState["fiveDaysForecast"]
+  // >((state) => state.weatherInfo.fiveDaysForecast);
+
   const currentWeather = useSelector<RootState, WeatherState["currentWeather"]>(
     (state) => state.weatherInfo.currentWeather
   );
 
   const unit = useSelector<RootState, WeatherState["unit"]>(
     (state) => state.weatherInfo.unit
-  ); 
+  );
 
-  const stateRef: { current: CityData | undefined; } = useRef();
+  const stateRef: { current: CityData | undefined } = useRef();
   stateRef.current = city;
 
-
-  useEffect(() => {
-    if(city){
-      console.log(city, "city in in unit use effect");
-
-      getCurrentWeather(city);
-      getFiveDaysForecast(unit, city);
-    }
-    else{
-      console.log(city,'city in geoloc')
-      getCityWithGeolocalisation(setCity);
-
-    }
-  }, [unit, city]);
-
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (city) {
+  //       console.log(city, "city in in unit use effect");
+  //       getCurrentWeather(city);
+  //     } else {
+  //       console.log(city, "city in geoloc");
+  //       getCityWithGeolocalisation(setCity);
+  //     }
+  //   }, 10000);
+  // }, [city]);
 
   return (
     <div id='homeContainer'>
       <SearchBar />
-      {currentWeather && city ? (
-        <>
-          <div id='currentWeatherContainer'>
+      {/* {currentWeather && city ? ( */}
+      {/* <> */}
+      <Toast className='Dark'>
+        <Toast.Header>
+          <img src='holder.js/20x20?text=%20' className='rounded me-2' alt='' />
+          <strong className='me-auto'>Bootstrap</strong>
+          <small>11 mins ago</small>
+        </Toast.Header>
+        <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+      </Toast>
+
+      {/* <div id='currentWeatherContainer'>
             <WeatherCard
               iconPhrase={currentWeather.WeatherText}
               iconSource={currentWeather.WeatherIcon}
@@ -78,16 +84,21 @@ const Home: React.FC<Props> = (props) => {
             <FavoriteButton city={city} />
           </div>
         </>
-      ) : null}
-      <div id='fiveDaysForecastContainer'>
-        {fiveDaysForecast && city ? (
+      ) : (
+        <Loader />
+      )} */}
+      {/* <div id='fiveDaysForecastContainer'>
+        {city ? (
           <FiveDaysForecast
+            getFiveDaysForecast={getFiveDaysForecast}
             unit={unit}
-            fiveDaysForecast={fiveDaysForecast}
+            // fiveDaysForecast={fiveDaysForecast}
             city={city}
           />
-        ) : null}
-      </div>
+        ) : (
+          <Loader />
+        )}
+      </div> */}
     </div>
   );
 };

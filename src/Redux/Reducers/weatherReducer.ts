@@ -1,7 +1,6 @@
 /** @format */
 
 import { WeatherTypes } from "../Enums/weatherTypes";
-import { REHYDRATE } from "redux-persist";
 import { WeatherState, ActionWeather } from "../Actions/types/weather";
 
 const initialState: WeatherState = {

@@ -1,0 +1,10 @@
+/** @format */
+
+#loaderContainer {
+  width: 120px;
+  height: 80px;
+  margin: 0 auto;
+  img {
+    height: -webkit-fill-available;
+  }
+}

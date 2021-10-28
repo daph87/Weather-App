@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,7 @@ import { RootState } from "../../../Redux/Reducers/rootReducer";
 import { FavoritesCitiesState } from "../../../Redux/Actions/types/favoritesCities";
 import { favoritesCitiesActionCreators } from "../../../Redux";
 import { CityData } from "../../../Types/CityDataType";
-import "./favoriteButton.scss"
+import "./favoriteButton.scss";
 
 type Props = {
   city: CityData;
@@ -29,15 +29,16 @@ const FavoriteButton: React.FC<Props> = (props) => {
     FavoritesCitiesState["favoritesCities"]
   >((state) => state.favoritesCitiesInfo.favoritesCities);
 
-  const toggleFav = favoritesCities.find((fav: CityData) => fav.Key === city.Key);
+  const toggleFav = favoritesCities.find(
+    (fav: CityData) => fav.Key === city.Key
+  );
 
   const toggleFavorites = async () => {
     toggleFav ? deleteCityFromFavorites(city.Key) : addCityToFavorites(city);
-
   };
 
   return (
-    <div id="favoriteIcon">
+    <div id='favoriteIcon'>
       <FontAwesomeIcon
         onClick={toggleFavorites}
         icon={faStar}
