@@ -10,7 +10,12 @@ export interface CurrentWeatherAction {
   type: WeatherTypes.CURRENT_WEATHER;
   // payload: AxiosResponse<CurrentWeatherData> | CurrentWeatherData;
   payload:  CurrentWeatherData | undefined;
+}
 
+export interface CurrentWeatherActionError {
+  type: WeatherTypes.CURRENT_WEATHER_ERROR;
+  // payload: AxiosResponse<CurrentWeatherData> | CurrentWeatherData;
+  payload:  string;
 }
 
 export interface CityAction {
@@ -28,13 +33,19 @@ export interface GetFiveDaysForecastAction {
   payload: FiveDaysData | undefined;
 }
 
+export interface GetFiveDaysForecastErrorAction {
+  type: WeatherTypes.FIVE_DAYS_FORECAST_ERROR;
+  payload: string;
+}
+
 
 export interface WeatherState {
   currentWeather?: CurrentWeatherData | undefined;
   // | AxiosResponse<CurrentWeatherData>
   // | CurrentWeatherData
   // | undefined;
-  // currentWeatherError: string | undefined;
+  currentWeatherError: string | undefined;
+  fiveDaysForecastError: string | undefined;
   city: CityData | undefined;
   unit: string;
   // weather: any;
@@ -47,3 +58,5 @@ export type ActionWeather =
   | CityAction
   | UnitConversionAction
   | GetFiveDaysForecastAction
+  | CurrentWeatherActionError
+  |GetFiveDaysForecastErrorAction

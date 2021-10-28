@@ -27,6 +27,10 @@ export const getCurrentWeather =
           });
         },
         (error) => {
+          dispatch({
+            type: WeatherTypes.CURRENT_WEATHER_ERROR,
+            payload: error.message,
+          });
           console.log(error.message, "error message");
         }
       );
@@ -85,7 +89,12 @@ export const getFiveDaysForecast =
             });
           },
           (error) => {
-            console.log(error);
+            dispatch({
+              type: WeatherTypes.FIVE_DAYS_FORECAST_ERROR,
+              payload: error.message,
+            });
+            console.log(error.message, "error message");
+         
           }
         );
     };

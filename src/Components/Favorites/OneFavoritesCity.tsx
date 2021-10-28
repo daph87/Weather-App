@@ -11,7 +11,7 @@ import { WeatherState } from "../../Redux/Actions/types/weather";
 import { RootState } from "../../Redux/Reducers/rootReducer";
 import { CityData } from "../../Types/CityDataType";
 import WeatherCard from "../Home/WeatherComponents/WeatherCard";
-import Loader from "../Loader/Loader";
+import Loader from "../Widgets/Loader/Loader";
 
 type Props = {
   city: CityData;

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import loader from "../../assets/loader.gif";
+import loader from "../../../assets/loader.gif";
 import "./Loader.scss";
 
 const Loader: React.FC = () => {

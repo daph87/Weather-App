@@ -1,5 +1,5 @@
 /** @format */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Toast } from "react-bootstrap";
@@ -16,7 +16,8 @@ import FiveDaysForecast from "./FiveDaysForecast/FiveDaysForecast";
 import { getCityWithGeolocalisation } from "../../Services/getGeolocalisation";
 import { CityData } from "../../Types/CityDataType";
 import "./home.scss";
-import Loader from "../Loader/Loader";
+import Loader from "../Widgets/Loader/Loader";
+import ModalComponent from "../Widgets/Modal/Modal";
 
 // type Props = {
 //   getCurrentWeather: () => void;
@@ -30,10 +31,11 @@ const Home: React.FC = () => {
   const city = useSelector<RootState, WeatherState["city"]>(
     (state) => state.weatherInfo.city
   );
-  // const fiveDaysForecast = useSelector<
-  //   RootState,
-  //   WeatherState["fiveDaysForecast"]
-  // >((state) => state.weatherInfo.fiveDaysForecast);
+
+  const fiveDaysForecast = useSelector<
+    RootState,
+    WeatherState["fiveDaysForecast"]
+  >((state) => state.weatherInfo.fiveDaysForecast);
 
   const currentWeather = useSelector<RootState, WeatherState["currentWeather"]>(
     (state) => state.weatherInfo.currentWeather
@@ -46,33 +48,25 @@ const Home: React.FC = () => {
   const stateRef: { current: CityData | undefined } = useRef();
   stateRef.current = city;
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (city) {
-  //       console.log(city, "city in in unit use effect");
-  //       getCurrentWeather(city);
-  //     } else {
-  //       console.log(city, "city in geoloc");
-  //       getCityWithGeolocalisation(setCity);
-  //     }
-  //   }, 10000);
-  // }, [city]);
+  useEffect(() => {
+      if (city) {
+        console.log(city, "city in in unit use effect");
+        getCurrentWeather(city);
+        getFiveDaysForecast(unit, city)
+      } else {
+        console.log(city, "city in geoloc");
+        getCityWithGeolocalisation(setCity);
+      }
+  }, [city, unit]);
 
   return (
     <div id='homeContainer'>
       <SearchBar />
-      {/* {currentWeather && city ? ( */}
-      {/* <> */}
-      <Toast className='Dark'>
-        <Toast.Header>
-          <img src='holder.js/20x20?text=%20' className='rounded me-2' alt='' />
-          <strong className='me-auto'>Bootstrap</strong>
-          <small>11 mins ago</small>
-        </Toast.Header>
-        <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-      </Toast>
 
-      {/* <div id='currentWeatherContainer'>
+      
+      {currentWeather && city ? (
+     <> 
+      <div id='currentWeatherContainer'>
             <WeatherCard
               iconPhrase={currentWeather.WeatherText}
               iconSource={currentWeather.WeatherIcon}
@@ -86,19 +80,17 @@ const Home: React.FC = () => {
         </>
       ) : (
         <Loader />
-      )} */}
-      {/* <div id='fiveDaysForecastContainer'>
+      )}
+      <div id='fiveDaysForecastContainer'>
         {city ? (
           <FiveDaysForecast
-            getFiveDaysForecast={getFiveDaysForecast}
             unit={unit}
-            // fiveDaysForecast={fiveDaysForecast}
             city={city}
           />
         ) : (
           <Loader />
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
