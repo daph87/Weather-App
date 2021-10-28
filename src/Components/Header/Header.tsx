@@ -29,14 +29,13 @@ const Header: React.FC = () => {
   );
 
   const switchUnit = () => {
-    unit === "C"
-      ? setUnitConversion("F")
-      : setUnitConversion("C");
+    unit === "C" ? setUnitConversion("F") : setUnitConversion("C");
   };
 
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
+
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <>
@@ -52,14 +51,11 @@ const Header: React.FC = () => {
               {unit === "C" ? <p>C° to F°</p> : <p>F° to C°</p>}
             </div>
           </div>
-
           <div className='title'>The Weather Channel</div>
-
           <div className='links'>
             <NavLink exact to='/'>
               Home
             </NavLink>
-
             <NavLink to='/favorites'>Favorites</NavLink>
           </div>
         </div>

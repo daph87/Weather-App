@@ -1,34 +1,32 @@
-import React, { MouseEventHandler, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+/** @format */
+
+import React, { MouseEventHandler } from "react";
+import { Button, Modal } from "react-bootstrap";
 
 type Props = {
-    show: boolean;
-    handleClose:MouseEventHandler<HTMLButtonElement>;
-    message: string
-  };
-  
-const ModalComponent : React.FC<Props> = (props) => {
-    const {show,handleClose, message} = props
+  show: boolean;
+  message: string;
+  closeModal: MouseEventHandler<HTMLButtonElement>;
+};
 
-    return(
-        <>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Error</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>{message}</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Ok
-            </Button>
-            {/* <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button> */}
-          </Modal.Footer>
-        </Modal>
-      </>
-    )
+const ModalComponent: React.FC<Props> = (props) => {
+  const { show, message, closeModal } = props;
 
-}
+  return (
+    <>
+      <Modal show={show} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{message}</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={closeModal}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
 
-export default ModalComponent
+export default ModalComponent;

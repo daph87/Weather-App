@@ -1,16 +1,15 @@
 /** @format */
 
 import React from "react";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
+import "./favorites.scss";
 import { FavoritesCitiesState } from "../../Redux/Actions/types/favoritesCities";
 import { RootState } from "../../Redux/Reducers/rootReducer";
 import OneFavoritesCity from "./OneFavoritesCity";
-import "./favorites.scss";
 import { CityData } from "../../Types/CityDataType";
 
 const Favorites: React.FC = () => {
-
   const favoritesCities = useSelector<
     RootState,
     FavoritesCitiesState["favoritesCities"]
@@ -19,7 +18,7 @@ const Favorites: React.FC = () => {
   return (
     <div className='favorites'>
       {favoritesCities.map((city: CityData) => (
-        <OneFavoritesCity city={city}/>
+        <OneFavoritesCity city={city} />
       ))}
     </div>
   );

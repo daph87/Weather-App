@@ -4,13 +4,11 @@ import React from "react";
 import moment from "moment";
 
 import { getWeatherIconUrl } from "../../../Helpers/getWeatherIconUrl";
-import { CityData } from "../../../Types/CityDataType";
 import { DailyDataType } from "../../../Types/DailyDataType";
 import "./dailyForecast.scss";
 
 type Props = {
   dailyForecast: DailyDataType;
-  city: CityData;
   unit: string;
 };
 const DailyForecast: React.FC<Props> = (props) => {

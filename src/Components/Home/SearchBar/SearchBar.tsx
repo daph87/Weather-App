@@ -17,23 +17,25 @@ const SearchBar: React.FC = () => {
 
   const [cityInput, setCityInput] = useState<string>("");
   const [locations, setLocations] = useState<CityData[] | undefined>(undefined);
-  
   const [showAutoComplete, setShowAutoComplete] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const onChangeCity = (event: React.FormEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     setCityInput(target.value);
-      const englishLetters = /^[A-Za-z]*$/
+    const englishLetters = /^[A-Za-z]*$/;
 
-  if(!englishLetters.test(target.value)){
-    setMessage("The search input can only contain english letters")
-    handleShow()
-  }else{
-    doSearch(target.value);
-  }
-    
+    if (!englishLetters.test(target.value)) {
+      setMessage("The search input can only contain english letters");
+      handleShow();
+    } else {
+      doSearch(target.value);
+    }
   };
-
 
   const chooseCity = (location: CityData) => {
     setShowAutoComplete(false);
@@ -48,21 +50,17 @@ const SearchBar: React.FC = () => {
         setShowAutoComplete(false);
         return false;
       }
-      const locations = await getLocationsAutoComplete(cityInput)
-      if(locations){
+      const locations = await getLocationsAutoComplete(cityInput);
+      if (locations) {
         setLocations(locations);
         setShowAutoComplete(true);
-        setShow(false)
-  
+        setShow(false);
+      } else {
+        setShow(true);
+        setMessage("We couldn't complete your search, please try again later");
       }
-      else{
-        setShow(true)
-        setMessage("We couldn't complete your search, please try again later")
-      }
-
     }, 500)
   ).current;
-
 
   const renderAutoComplete = () => {
     if (!showAutoComplete || !locations) return false;
@@ -79,29 +77,19 @@ const SearchBar: React.FC = () => {
     return locationDiv;
   };
 
-  const [show, setShow] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
     <>
-    <ModalComponent message={message} show={show} handleClose={handleClose}/>
+      <ModalComponent message={message} show={show} closeModal={handleClose} />
 
-    <form
-      id='locationSearch'
-      onSubmit={() => {
-        console.log("Hello World");
-      }}>
-      <MDBInput
-        onChange={onChangeCity}
-        value={cityInput}
-        type='text'
-        label='Search city'
-      />
-      <div>{renderAutoComplete()}</div>
-    </form>
+      <form id='locationSearch'>
+        <MDBInput
+          onChange={onChangeCity}
+          value={cityInput}
+          type='text'
+          label='Search city'
+        />
+        <div>{renderAutoComplete()}</div>
+      </form>
     </>
   );
 };

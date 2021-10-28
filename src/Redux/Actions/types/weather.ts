@@ -2,20 +2,21 @@
 
 import { CurrentWeatherData } from "../../../Types/CurrentWeatherDataType";
 import { WeatherTypes } from "../../Enums/weatherTypes";
-import { AxiosResponse } from "axios";
 import { CityData } from "../../../Types/CityDataType";
 import { FiveDaysData } from "../../../Types/FiveDaysDataType";
 
 export interface CurrentWeatherAction {
   type: WeatherTypes.CURRENT_WEATHER;
-  // payload: AxiosResponse<CurrentWeatherData> | CurrentWeatherData;
-  payload:  CurrentWeatherData | undefined;
+  payload: CurrentWeatherData | undefined;
 }
 
 export interface CurrentWeatherActionError {
   type: WeatherTypes.CURRENT_WEATHER_ERROR;
-  // payload: AxiosResponse<CurrentWeatherData> | CurrentWeatherData;
-  payload:  string;
+  payload: string;
+}
+
+export interface CloseModalAction {
+  type: WeatherTypes.CLOSE_MODAL;
 }
 
 export interface CityAction {
@@ -38,20 +39,17 @@ export interface GetFiveDaysForecastErrorAction {
   payload: string;
 }
 
-
 export interface WeatherState {
   currentWeather?: CurrentWeatherData | undefined;
-  // | AxiosResponse<CurrentWeatherData>
-  // | CurrentWeatherData
-  // | undefined;
   currentWeatherError: string | undefined;
   fiveDaysForecastError: string | undefined;
   city: CityData | undefined;
   unit: string;
-  // weather: any;
-  fiveDaysForecast:  FiveDaysData | undefined;
+  fiveDaysForecast: FiveDaysData | undefined;
+  showModal: boolean;
+  modalMessageCurrent: string;
+  modalMessageForecast: string;
 }
-
 
 export type ActionWeather =
   | CurrentWeatherAction
@@ -59,4 +57,5 @@ export type ActionWeather =
   | UnitConversionAction
   | GetFiveDaysForecastAction
   | CurrentWeatherActionError
-  |GetFiveDaysForecastErrorAction
+  | GetFiveDaysForecastErrorAction
+  | CloseModalAction;

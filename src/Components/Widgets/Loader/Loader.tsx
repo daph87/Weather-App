@@ -7,7 +7,7 @@ import "./Loader.scss";
 const Loader: React.FC = () => {
   return (
     <div id='loaderContainer'>
-      <img src={loader} />
+      <img src={loader} alt='loader' />
     </div>
   );
 };

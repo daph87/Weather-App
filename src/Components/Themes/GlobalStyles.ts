@@ -1,3 +1,5 @@
+/** @format */
+
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
@@ -9,4 +11,10 @@ export const GlobalStyles = createGlobalStyle`
   }
   .form-outline .form-control~.form-label{
     color:${({ theme }) => theme.color}
-  }  `;
+  }
+  .modal-header, .modal-body{
+    color:black!important
+  }
+  .form-outline .form-control{
+    color:${({ theme }) => theme.color}
+  }`;

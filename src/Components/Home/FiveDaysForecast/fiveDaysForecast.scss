@@ -1,7 +1,10 @@
 /** @format */
 #fiveDaysForecastBox {
-  display: flex;
   justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
   h1 {
     font-size: 2rem;
     margin: 26px;

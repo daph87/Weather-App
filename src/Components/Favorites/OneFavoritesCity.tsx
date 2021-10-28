@@ -39,9 +39,6 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
       setCurrentWeather(favCurrentWeater);
     };
     getFavCurrentWeather();
-    // const currentWeather = jsonFile;
-    // setCurrentWeather(currentWeather);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onGoBack = () => {
@@ -49,9 +46,9 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
     history.push("/home");
   };
 
-  return (
-    <div key={`favWeatherContainer${city.Key}`}>
-      {currentWeather ? (
+  const renderFavorites = () => {
+    if (currentWeather) {
+      return (
         <WeatherCard
           onClick={onGoBack}
           iconPhrase={currentWeather.WeatherText}
@@ -61,11 +58,13 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
           cityName={city.LocalizedName}
           temperature={showUnit(unit, currentWeather)}
         />
-      ) : (
-        <Loader />
-      )}
-    </div>
-  );
+      );
+    } else if (currentWeather === "No errors") {
+      return <Loader />;
+    }
+  };
+
+  return <div key={`favWeatherContainer${city.Key}`}>{renderFavorites()}</div>;
 };
 
 export default OneFavoritesCity;
