@@ -15,7 +15,7 @@ import Home from "./Home/Home";
 const Layout: React.FC = () => {
   return (
     <div className='layout'>
-      <Router basename='https://daph87.github.io/Daphne-Levy-24-10-2021'>
+      <Router>
         <header>
           <Header />
         </header>
