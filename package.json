@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@productboard/webpack-deploy": "github:productboard/webpack-deploy",
     "@types/lodash.debounce": "^4.0.6",
     "@types/react-fontawesome": "^1.6.5",
     "@types/react-modal": "^3.13.1",
