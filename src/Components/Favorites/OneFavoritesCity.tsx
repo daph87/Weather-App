@@ -43,7 +43,7 @@ const OneFavoritesCity: React.FC<Props> = (props) => {
 
   const onGoBack = () => {
     setCity(city);
-    history.push("/home");
+    history.push("/");
   };
 
   const renderFavorites = () => {
