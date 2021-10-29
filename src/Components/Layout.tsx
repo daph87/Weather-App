@@ -2,7 +2,7 @@
 
 import React from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -21,8 +21,8 @@ const Layout: React.FC = () => {
         </header>
         <main>
           <Switch>
+            <Route exact path='/Daphne-Levy-24-10-2021' component={Home} />
             <Route exact path='/favorites' component={Favorites} />
-            <Route exact path='/' component={Home} />
             <Redirect exact from='/' to='home' />
           </Switch>
         </main>
