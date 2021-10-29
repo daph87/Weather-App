@@ -15,13 +15,13 @@ import Home from "./Home/Home";
 const Layout: React.FC = () => {
   return (
     <div className='layout'>
-      <Router>
+      <Router basename='https://daph87.github.io/Daphne-Levy-24-10-2021'>
         <header>
           <Header />
         </header>
         <main>
           <Switch>
-            <Route exact path='/Daphne-Levy-24-10-2021' component={Home} />
+            <Route exact path='/' component={Home} />
             <Route exact path='/favorites' component={Favorites} />
             <Redirect exact from='/' to='home' />
           </Switch>
