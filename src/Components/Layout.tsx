@@ -22,7 +22,7 @@ const Layout: React.FC = () => {
         <main>
           <Switch>
             <Route exact path='/favorites' component={Favorites} />
-            <Route exact path='/home' component={Home} />
+            <Route exact path='/' component={Home} />
             <Redirect exact from='/' to='home' />
           </Switch>
         </main>
