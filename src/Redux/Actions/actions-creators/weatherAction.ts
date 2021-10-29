@@ -7,7 +7,6 @@ import { ActionWeather } from "../types/weather";
 import { CityData } from "../../../Types/CityDataType";
 import { apikey } from "../../../global";
 
-// apikey=HJEPQTZCWxhq8IqpXFNwM9vbUgHi1PHP
 export const getCurrentWeather =
   (city: CityData) => async (dispatch: Dispatch<ActionWeather>) => {
     let data;
