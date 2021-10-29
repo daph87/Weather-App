@@ -60,7 +60,6 @@
     ]
   },
   "devDependencies": {
-    "@productboard/webpack-deploy": "github:productboard/webpack-deploy",
     "@types/lodash.debounce": "^4.0.6",
     "@types/react-fontawesome": "^1.6.5",
     "@types/react-modal": "^3.13.1",
@@ -69,6 +68,7 @@
     "eslint": "^7.11.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.2",
+    "gh-pages": "^3.2.3",
     "prettier": "2.4.1"
   }
 }
