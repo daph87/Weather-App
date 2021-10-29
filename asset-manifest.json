@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Daphne-Levy-24-10-2021/static/css/main.be76cbec.chunk.css",
+    "main.js": "/Daphne-Levy-24-10-2021/static/js/main.f6831756.chunk.js",
+    "main.js.map": "/Daphne-Levy-24-10-2021/static/js/main.f6831756.chunk.js.map",
+    "runtime-main.js": "/Daphne-Levy-24-10-2021/static/js/runtime-main.4558adbe.js",
+    "runtime-main.js.map": "/Daphne-Levy-24-10-2021/static/js/runtime-main.4558adbe.js.map",
+    "static/css/2.c6e9d817.chunk.css": "/Daphne-Levy-24-10-2021/static/css/2.c6e9d817.chunk.css",
+    "static/js/2.1758c19b.chunk.js": "/Daphne-Levy-24-10-2021/static/js/2.1758c19b.chunk.js",
+    "static/js/2.1758c19b.chunk.js.map": "/Daphne-Levy-24-10-2021/static/js/2.1758c19b.chunk.js.map",
+    "static/js/3.43f6b91d.chunk.js": "/Daphne-Levy-24-10-2021/static/js/3.43f6b91d.chunk.js",
+    "static/js/3.43f6b91d.chunk.js.map": "/Daphne-Levy-24-10-2021/static/js/3.43f6b91d.chunk.js.map",
+    "index.html": "/Daphne-Levy-24-10-2021/index.html",
+    "static/css/2.c6e9d817.chunk.css.map": "/Daphne-Levy-24-10-2021/static/css/2.c6e9d817.chunk.css.map",
+    "static/css/main.be76cbec.chunk.css.map": "/Daphne-Levy-24-10-2021/static/css/main.be76cbec.chunk.css.map",
+    "static/js/2.1758c19b.chunk.js.LICENSE.txt": "/Daphne-Levy-24-10-2021/static/js/2.1758c19b.chunk.js.LICENSE.txt",
+    "static/media/loader.a1a99674.gif": "/Daphne-Levy-24-10-2021/static/media/loader.a1a99674.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4558adbe.js",
+    "static/css/2.c6e9d817.chunk.css",
+    "static/js/2.1758c19b.chunk.js",
+    "static/css/main.be76cbec.chunk.css",
+    "static/js/main.f6831756.chunk.js"
+  ]
+}
