@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Daphne-Levy-24-10-2021/static/css/main.be76cbec.chunk.css",
-    "main.js": "/Daphne-Levy-24-10-2021/static/js/main.f6831756.chunk.js",
-    "main.js.map": "/Daphne-Levy-24-10-2021/static/js/main.f6831756.chunk.js.map",
+    "main.js": "/Daphne-Levy-24-10-2021/static/js/main.35a2fcd5.chunk.js",
+    "main.js.map": "/Daphne-Levy-24-10-2021/static/js/main.35a2fcd5.chunk.js.map",
     "runtime-main.js": "/Daphne-Levy-24-10-2021/static/js/runtime-main.4558adbe.js",
     "runtime-main.js.map": "/Daphne-Levy-24-10-2021/static/js/runtime-main.4558adbe.js.map",
     "static/css/2.c6e9d817.chunk.css": "/Daphne-Levy-24-10-2021/static/css/2.c6e9d817.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.c6e9d817.chunk.css",
     "static/js/2.1758c19b.chunk.js",
     "static/css/main.be76cbec.chunk.css",
-    "static/js/main.f6831756.chunk.js"
+    "static/js/main.35a2fcd5.chunk.js"
   ]
 }
